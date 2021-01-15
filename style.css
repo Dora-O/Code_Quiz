@@ -40,3 +40,23 @@ a {
     color: darkcyan;
     float: right;
 }
+
+button {
+    border: none;
+    background-color: lightcyan;
+    color: black;
+    border-radius: 5px;
+    padding: 10px 16px 10px 16px;
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 4px;
+}
+
+button:hover {
+    transition-duration: 0.4s;
+    background-color:whitesmoke;
+}
+
+#quiz {
+    text-align: center;
+}
