@@ -15,64 +15,85 @@ var removeH3 = document.querySelector('h3');
 var questionCount = 0;
 var score = 0;
 var timeLeft = 60;
-var timer ;
-var questions = [{
-    question: "What is the correct method of rounding the number 7.25 to the nearest integer?",
-    options: ["round(7.25)", "Math.rnd(7.25)", "Math.round(7.25)", "round.down(7.25)"],
-    answer: "Math.round(7.25)"
-},
+var timer;
 
-{
-    question: "How many elements can you apply an 'ID' attribute to?",
-    options: ["As many as you want", "27", "1", "12"],
-    answer: "1"
-},
+//function to display question and choices in sequential order 
+function currentQuestion() {
+    var questions = [{
+        question: "What is the correct method of rounding the number 7.25 to the nearest integer?",
+        options: ["round(7.25)", "Math.rnd(7.25)", "Math.round(7.25)", "round.down(7.25)"],
+        answer: "Math.round(7.25)"
+    },
 
-{
-    question: "Which of these values can a boolean variable contain?",
-    options: ["0 & 1", "False", "Any integer value", "True & False"],
-    answer: "True & False"
-},
+    {
+        question: "How many elements can you apply an 'ID' attribute to?",
+        options: ["As many as you want", "27", "1", "12"],
+        answer: "1"
+    },
 
-{
-    question: "What does DOM stand for?",
-    options: ["Document Object Model", "Display Object Management", "Digital Ordinance Model", "Desktop Oriented Mode"],
-    answer: "Document Object Model"
-},
+    {
+        question: "Which of these values can a boolean variable contain?",
+        options: ["0 & 1", "False", "Any integer value", "True & False"],
+        answer: "True & False"
+    },
 
-{
-    question: "Is there a difference between JavaScript and Java?",
-    options: ["No, they are the same thing", "One is coding and the other is coffee", "Yes, they are two different languages", "Yes, they are spelled different"],
-    answer: "Yes, they are two different languages"
-},
-{
-    question: "What is used primarily to add styling to a web page?",
-    options: ["HTML", "CSS", "Python", "React.js"],
-    answer: "CSS"
-},
+    {
+        question: "What does DOM stand for?",
+        options: ["Document Object Model", "Display Object Management", "Digital Ordinance Model", "Desktop Oriented Mode"],
+        answer: "Document Object Model"
+    },
 
-{
-    question: "Which of the following function of an array object adds and/or removes elements from an array?",
-    options: ["toSource()", "sort()", "unshift()", "splice()"],
-    answer: "splice()"
-},
-];
+    {
+        question: "Is there a difference between JavaScript and Java?",
+        options: ["No, they are the same thing", "One is coding and the other is coffee", "Yes, they are two different languages", "Yes, they are spelled different"],
+        answer: "Yes, they are two different languages"
+    },
+    {
+        question: "What is used primarily to add styling to a web page?",
+        options: ["HTML", "CSS", "Python", "React.js"],
+        answer: "CSS"
+    },
 
-var currentQuestion = questions[(Math.floor(Math.random()*questions.length))];
-console.log (currentQuestion)
+    {
+        question: "Which of the following function of an array object adds and/or removes elements from an array?",
+        options: ["toSource()", "sort()", "unshift()", "splice()"],
+        answer: "splice()"
+    },
+    ];
 
-startBtn.addEventListener("click", function(){
-    var timerInterval = setInterval(function(){
+
+    if (questionCount < questions.length) {
+        //displays question on page
+        questionDisplay.innerHTML = questions[questionCount].question;
+        choices.textContent = "";
+
+        for (i = 0; i < questions[questionCount].options.length; i++) {
+            //will create buttons for each option in the question 
+            var el = document.createElement("button");
+            el.innerText = questions[questionCount].options[i];
+            el.setAttribute("data-id", i);
+            //appends options to html to be displayed on screen
+            choices.append(el);
+        }
+    }
+}
+
+
+startBtn.addEventListener("click", function () {
+    //removes h1, h3 and startbutton when start button is clicked
+    document.querySelector('h1').style.display = "none";
+    document.querySelector('h3').style.display = "none";
+    document.getElementById("start-button").style.display = "none";
+    //loads currentQuestion function 
+    currentQuestion();
+    var timerInterval = setInterval(function () {
         timeLeft--;
-        if(timeLeft === 0){
+        if (timeLeft === 0) {
             clearInterval(timerInterval);
             timerCountEl.textContent = "Game Over!";
         }
-        else{
+        else {
             timerCountEl.textContent = timeLeft;
-            document.getElementById("start-button").style.display = "none";
-            document.querySelector('h1').style.display = "none";
-            document.querySelector('h3').style.display = "none";
         }
-    },1000)
+    }, 1000)
 });
