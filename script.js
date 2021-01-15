@@ -1,15 +1,17 @@
 //startbutton var
-var startBtn = document.querySelector("#start-button");
+var startBtn = document.querySelector('#start-button');
 //scorebutton var
-var scoreBtn = document.querySelector("#get-score");
+var scoreBtn = document.querySelector('#get-score');
 //variable for current question to be displayed on screen
-var questionDisplay = document.querySelector("#questionDisplay");
+var questionDisplay = document.querySelector('#questionDisplay');
 //variabe to display options on screen
-var choices = document.querySelector("#choices");
+var choices = document.querySelector('#choices');
 //variable for correct answer  
-var result = document.querySelector("#result");
+var result = document.querySelector('#result');
 //variable to keep track of questions
 var timerCountEl = document.querySelector('.timer-count');
+var removeH1 = document.querySelector('h1');
+var removeH3 = document.querySelector('h3');
 var questionCount = 0;
 var score = 0;
 var timeLeft = 60;
@@ -68,6 +70,9 @@ startBtn.addEventListener("click", function(){
         }
         else{
             timerCountEl.textContent = timeLeft;
+            document.getElementById("start-button").style.display = "none";
+            document.querySelector('h1').style.display = "none";
+            document.querySelector('h3').style.display = "none";
         }
     },1000)
 });
