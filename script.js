@@ -9,9 +9,10 @@ var choices = document.querySelector("#choices");
 //variable for correct answer  
 var result = document.querySelector("#result");
 //variable to keep track of questions
+var timerCountEl = document.querySelector('.timer-count');
 var questionCount = 0;
 var score = 0;
-var timeLeft = 0;
+var timeLeft = 60;
 var timer ;
 var questions = [{
     question: "What is the correct method of rounding the number 7.25 to the nearest integer?",
@@ -54,3 +55,19 @@ var questions = [{
     answer: "splice()"
 },
 ];
+
+var currentQuestion = questions[(Math.floor(Math.random()*questions.length))];
+console.log (currentQuestion)
+
+startBtn.addEventListener("click", function(){
+    var timerInterval = setInterval(function(){
+        timeLeft--;
+        if(timeLeft === 0){
+            clearInterval(timerInterval);
+            timerCountEl.textContent = "Game Over!";
+        }
+        else{
+            timerCountEl.textContent = timeLeft;
+        }
+    },1000)
+});
