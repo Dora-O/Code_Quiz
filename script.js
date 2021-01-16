@@ -79,7 +79,7 @@ function currentQuestion() {
                 //checks users answer and gives score
                 if (this.textContent === questions[questionCount].answer) {
                     score += 10;
-                    alert("Correct")
+                    alert("Correct");
                     questionCount++;
                     currentQuestion();
                 }
@@ -90,7 +90,6 @@ function currentQuestion() {
                     questionCount++;
                     currentQuestion();
                 }
-                questionDisplay.innerHTML = "";
                 console.log(score);
             });
             //appends options to html to be displayed on screen
