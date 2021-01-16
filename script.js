@@ -61,7 +61,6 @@ function currentQuestion() {
     },
     ];
 
-
     if (questionCount < questions.length) {
         //displays question on page
         questionDisplay.innerHTML = questions[questionCount].question;
@@ -71,7 +70,29 @@ function currentQuestion() {
             //will create buttons for each option in the question 
             var el = document.createElement("button");
             el.innerText = questions[questionCount].options[i];
+            console.log(el)
             el.setAttribute("data-id", i);
+            //event listener for option user chooses
+            el.addEventListener("click", function (event) {
+                //logs just the text content of answer button
+                console.log(this.textContent)
+                //checks users answer and gives score
+                if (this.textContent === questions[questionCount].answer) {
+                    score += 10;
+                    alert("Correct")
+                    questionCount++;
+                    currentQuestion();
+                }
+                else {
+                    score -=5;
+                    timeLeft = timeLeft -5;
+                    alert("Incorrect");
+                    questionCount++;
+                    currentQuestion();
+                }
+                questionDisplay.innerHTML = "";
+                console.log(score);
+            });
             //appends options to html to be displayed on screen
             choices.append(el);
         }
@@ -79,7 +100,7 @@ function currentQuestion() {
 }
 
 
-startBtn.addEventListener("click", function () {
+startBtn.addEventListener("click", function gameTimer() {
     //removes h1, h3 and startbutton when start button is clicked
     document.querySelector('h1').style.display = "none";
     document.querySelector('h3').style.display = "none";
