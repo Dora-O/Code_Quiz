@@ -20,9 +20,9 @@ var timer;
 //function to display question and choices in sequential order 
 function currentQuestion() {
     var questions = [{
-        question: "What is the correct method of rounding the number 7.25 to the nearest integer?",
-        options: ["round(7.25)", "Math.rnd(7.25)", "Math.round(7.25)", "round.down(7.25)"],
-        answer: "Math.round(7.25)"
+        question: "What is the correct way to write a JavaScript array?",
+        options: ["var colors = (1:'red', 2:'green', 3:'blue')", "var colors = 'red', 'green', 'blue", "var colors = 1 =('red'), 2 =('green'), 3 =('blue')", "var colors ['red', 'green', 'blue']"],
+        answer: "var colors ['red', 'green', 'blue']"
     },
 
     {
@@ -55,9 +55,27 @@ function currentQuestion() {
     },
 
     {
+        question: "Inside which HTML element do we put the Javascript?",
+        options: ["<js>", "<scripting>", "<javascript>", "<script>"],
+        answer: "<script>"
+    },
+
+    {
         question: "Which of the following function of an array object adds and/or removes elements from an array?",
         options: ["toSource()", "sort()", "unshift()", "splice()"],
         answer: "splice()"
+    },
+
+    {
+        question: "How do you write 'Hello World' in an alert box?",
+        options: ["alertBox('Hello World');", "msg('Hello World');", "alert('Hello World');", "msgBox('Hello World');"],
+        answer: "alert('Hello World');"
+    },
+
+    {
+        question: "How does a FOR loop start?",
+        options: ["for i = 1 to 5", "for(i <= 5; i++)", "for(i = 0; i <= 5; i++)", "for(i = 0; i <= 5)"],
+        answer: "for(i = 0; i <= 5; i++)"
     },
     ];
 
