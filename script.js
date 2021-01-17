@@ -102,6 +102,7 @@ function currentQuestion() {
                     currentQuestion();
                 }
                 else {
+                    //removes 5 points and 5 seconds off score and time
                     score -=5;
                     timeLeft = timeLeft -5;
                     alert("Incorrect");
@@ -116,22 +117,49 @@ function currentQuestion() {
     }
 }
 
+function setScore(){
+    localStorage.setItem("score", score)
+}
 
-startBtn.addEventListener("click", function gameTimer() {
+
+function getScore(){
+    var storedScroe = localStorage.getItem("score");
+    if (storedScore === null){
+        score = 0
+    }
+    else{
+        score = storedScore
+    }
+    scores.textContent = score ;
+}
+
+
+
+function gameTimer() {
     //removes h1, h3 and startbutton when start button is clicked
     document.querySelector('h1').style.display = "none";
     document.querySelector('h3').style.display = "none";
     document.getElementById("start-button").style.display = "none";
     //loads currentQuestion function 
-    currentQuestion();
+
     var timerInterval = setInterval(function () {
         timeLeft--;
-        if (timeLeft === 0) {
+        if (timeLeft === 0 || questionCount === 10) {
             clearInterval(timerInterval);
             timerCountEl.textContent = "Game Over!";
+            questionDisplay.innerHTML = "You got " + score + " points out of 100 possible points" ;
+            choices.textContent = "";
+            //alert ("You got " + score + " points out of 100 possible points" );
         }
         else {
             timerCountEl.textContent = timeLeft;
         }
     }, 1000)
-});
+};
+
+function startGame(){
+    currentQuestion();
+    gameTimer()
+}
+
+startBtn.addEventListener("click", startGame)
