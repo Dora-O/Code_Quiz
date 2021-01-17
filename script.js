@@ -10,6 +10,7 @@ var choices = document.querySelector('#choices');
 var result = document.querySelector('#result');
 //variable to keep track of questions
 var timerCountEl = document.querySelector('.timer-count');
+var scores = document.querySelector('.scores');
 var removeH1 = document.querySelector('h1');
 var removeH3 = document.querySelector('h3');
 var questionCount = 0;
@@ -103,8 +104,8 @@ function currentQuestion() {
                 }
                 else {
                     //removes 5 points and 5 seconds off score and time
-                    score -=5;
-                    timeLeft = timeLeft -5;
+                    score -= 5;
+                    timeLeft = timeLeft - 5;
                     alert("Incorrect");
                     questionCount++;
                     currentQuestion();
@@ -117,22 +118,33 @@ function currentQuestion() {
     }
 }
 
-function setScore(){
-    localStorage.setItem("score", score)
+function userScore() {
+    //captures current user's initials
+    var initials = prompt("Enter initials")
+    if (initials.value === "") {
+        alert("Initials cannot be blank!")
+        return false;
+    }
+    else {
+        //saved scores
+        var savedScore = JSON.parse(localStorage.getItem("savedScore")) || [];
+        var currentUserScore = {
+            name: initials,
+            score: score
+        };
+    }
+    //pushes current user's score to storage 
+    savedScore.push(currentUserScore);
+    localStorage.setItem("savedScore", JSON.stringify(savedScore));
+    console.log(savedScore)
+    console.log(currentUserScore)
+    
+
 }
 
+// function viewScores() {
 
-function getScore(){
-    var storedScroe = localStorage.getItem("score");
-    if (storedScore === null){
-        score = 0
-    }
-    else{
-        score = storedScore
-    }
-    scores.textContent = score ;
-}
-
+// }
 
 
 function gameTimer() {
@@ -147,9 +159,10 @@ function gameTimer() {
         if (timeLeft === 0 || questionCount === 10) {
             clearInterval(timerInterval);
             timerCountEl.textContent = "Game Over!";
-            questionDisplay.innerHTML = "You got " + score + " points out of 100 possible points" ;
+            questionDisplay.innerHTML = "You got " + score + " points out of 100 possible points";
             choices.textContent = "";
             //alert ("You got " + score + " points out of 100 possible points" );
+            userScore();
         }
         else {
             timerCountEl.textContent = timeLeft;
@@ -157,9 +170,11 @@ function gameTimer() {
     }, 1000)
 };
 
-function startGame(){
+function startGame() {
     currentQuestion();
-    gameTimer()
+    gameTimer();
 }
 
 startBtn.addEventListener("click", startGame)
+
+//scoreBtn.addEventListener("click", viewScores)
