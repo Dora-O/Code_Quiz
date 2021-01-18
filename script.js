@@ -121,9 +121,10 @@ function currentQuestion() {
 function userScore() {
     //captures current user's initials
     var initials = prompt("Enter initials")
-    if (initials.value === "") {
-        alert("Initials cannot be blank!")
-        return false;
+    if (initials === "") {
+        alert("Initials cannot be blank!");
+        //will return the function so that the user can input initials; will not proceed past this step until initials have been entered
+        return userScore();
     }
     else {
         //saved scores
@@ -138,8 +139,6 @@ function userScore() {
     localStorage.setItem("savedScore", JSON.stringify(savedScore));
     console.log(savedScore)
     console.log(currentUserScore)
-    
-
 }
 
 // function viewScores() {
@@ -152,13 +151,13 @@ function gameTimer() {
     document.querySelector('h1').style.display = "none";
     document.querySelector('h3').style.display = "none";
     document.getElementById("start-button").style.display = "none";
-    //loads currentQuestion function 
 
     var timerInterval = setInterval(function () {
         timeLeft--;
         if (timeLeft === 0 || questionCount === 10) {
             clearInterval(timerInterval);
             timerCountEl.textContent = "Game Over!";
+            //displays score on screen AFTER user inputs initials
             questionDisplay.innerHTML = "You got " + score + " points out of 100 possible points";
             choices.textContent = "";
             //alert ("You got " + score + " points out of 100 possible points" );
