@@ -10,6 +10,10 @@ var choices = document.querySelector('#choices');
 var result = document.querySelector('#result');
 //variable to keep track of questions
 var timerCountEl = document.querySelector('.timer-count');
+var displayName = document.querySelector("#usersInitials");
+var displayScore = document.querySelector("#usersScore");
+var removeBlanks = document.querySelector("#blank1");
+var removeBlanks2 = document.querySelector("#blank2");
 var scores = document.querySelector('.scores');
 var removeH1 = document.querySelector('h1');
 var removeH3 = document.querySelector('h3');
@@ -118,6 +122,13 @@ function currentQuestion() {
     }
 }
 
+function init() {
+    document.querySelector('#blank1').style.display = "none";
+    document.querySelector('#blank2').style.display = "none";
+}
+
+init();
+
 function userScore() {
     //captures current user's initials
     var initials = prompt("Enter initials")
@@ -127,7 +138,7 @@ function userScore() {
         return userScore();
     }
     else {
-        //saved scores
+        //saved scores variable
         var savedScore = JSON.parse(localStorage.getItem("savedScore")) || [];
         var currentUserScore = {
             name: initials,
@@ -141,9 +152,27 @@ function userScore() {
     console.log(currentUserScore)
 }
 
-// function viewScores() {
-
-// }
+function viewScores() {
+    document.querySelector('h1').style.display = "none";
+    document.querySelector('h3').style.display = "none";
+    document.getElementById("start-button").style.display = "none";
+    removeBlanks.innerHTML="User's Initials";
+    removeBlanks2.innerHTML="User's Score";
+    displayName.innerHTML = "";
+    displayScore.innerHTML = "";
+    var highScores = JSON.parse(localStorage.getItem("savedScore")) || [];
+    console.log(highScores)
+    for (i = 0; i < highScores.length; i++) {
+        var nameSpan = document.createElement("li");
+        var scoreSpan = document.createElement("li");
+        nameSpan.textContent = highScores[i].name;
+        scoreSpan.textContent = highScores[i].score;
+        displayName.appendChild(nameSpan);
+        displayScore.appendChild(scoreSpan)
+    }
+    console.log(displayName)
+    console.log(displayScore)
+}
 
 
 function gameTimer() {
@@ -176,4 +205,4 @@ function startGame() {
 
 startBtn.addEventListener("click", startGame)
 
-//scoreBtn.addEventListener("click", viewScores)
+scoreBtn.addEventListener("click", viewScores)
