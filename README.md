@@ -5,6 +5,7 @@ The application itself was created with HTML, CSS and JavaScript.
 User has sixty seconds to answer ten questions.
 For every question that the user gets correct, they get ten points added to their score.
 For every question the user gets incorrect, five points get deducted from score as well as five seconds deducted from timer.
+User will also see an alert box appear for every correct/incorrect answer.
 
 After timer reaches zero or user has answered all ten questions; a prompt will appear to capture the user's initials so that the score can be saved.
 After user inputs initials, the screen will show how many points the user got.
