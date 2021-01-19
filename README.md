@@ -8,6 +8,7 @@ For every question the user gets incorrect, five points get deducted from score 
 User will also see an alert box appear for every correct/incorrect answer.
 
 After timer reaches zero or user has answered all ten questions; a prompt will appear to capture the user's initials so that the score can be saved.
+Prompt will also appear if time tries to go below zero after many incorrect answers.
 After user inputs initials, the screen will show how many points the user got.
 
 User is then able to click on "View Scores" and see all locally saved users with their scores.
