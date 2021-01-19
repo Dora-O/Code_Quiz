@@ -14,6 +14,8 @@ var displayName = document.querySelector("#usersInitials");
 var displayScore = document.querySelector("#usersScore");
 var removeBlanks = document.querySelector("#blank1");
 var removeBlanks2 = document.querySelector("#blank2");
+//variable for backbutton
+var backBtn = document.querySelector('#backButton');
 var scores = document.querySelector('.scores');
 var removeH1 = document.querySelector('h1');
 var removeH3 = document.querySelector('h3');
@@ -122,12 +124,11 @@ function currentQuestion() {
     }
 }
 
-function init() {
-    document.querySelector('#blank1').style.display = "none";
-    document.querySelector('#blank2').style.display = "none";
-}
+// function init(){
+//     document.querySelector("#backButton").style.display = "none";
+// }
 
-init();
+// init();
 
 function userScore() {
     //captures current user's initials
@@ -152,12 +153,18 @@ function userScore() {
     console.log(currentUserScore)
 }
 
+//allows scores to be listed next to users initials 
 function viewScores() {
+    //removes h1, h3 and start button from display
     document.querySelector('h1').style.display = "none";
     document.querySelector('h3').style.display = "none";
     document.getElementById("start-button").style.display = "none";
-    removeBlanks.innerHTML="User's Initials";
-    removeBlanks2.innerHTML="User's Score";
+    questionDisplay.innerHTML = "";
+    choices.textContent = ""
+    //will only show 'back button' on this page
+    backBtn.innerHTML = "Back";
+    removeBlanks.innerHTML = "User's Initials";
+    removeBlanks2.innerHTML = "User's Score";
     displayName.innerHTML = "";
     displayScore.innerHTML = "";
     var highScores = JSON.parse(localStorage.getItem("savedScore")) || [];
@@ -198,6 +205,11 @@ function gameTimer() {
     }, 1000)
 };
 
+//reloads the page to start quiz
+function goBack() {
+    window.location.reload();
+}
+
 function startGame() {
     currentQuestion();
     gameTimer();
@@ -206,3 +218,5 @@ function startGame() {
 startBtn.addEventListener("click", startGame)
 
 scoreBtn.addEventListener("click", viewScores)
+
+backBtn.addEventListener("click", goBack)
