@@ -95,12 +95,12 @@ function currentQuestion() {
             //will create buttons for each option in the question 
             var el = document.createElement("button");
             el.innerText = questions[questionCount].options[i];
-            console.log(el)
+            // console.log(el)
             el.setAttribute("data-id", i);
             //event listener for option user chooses
             el.addEventListener("click", function (event) {
                 //logs just the text content of answer button
-                console.log(this.textContent)
+                // console.log(this.textContent)
                 //checks users answer and gives score
                 if (this.textContent === questions[questionCount].answer) {
                     score += 10;
@@ -116,7 +116,7 @@ function currentQuestion() {
                     questionCount++;
                     currentQuestion();
                 }
-                console.log(score);
+                // console.log(score);
             });
             //appends options to html to be displayed on screen
             choices.append(el);
@@ -149,8 +149,8 @@ function userScore() {
     //pushes current user's score to storage 
     savedScore.push(currentUserScore);
     localStorage.setItem("savedScore", JSON.stringify(savedScore));
-    console.log(savedScore)
-    console.log(currentUserScore)
+    // console.log(savedScore)
+    // console.log(currentUserScore)
 }
 
 //allows scores to be listed next to users initials 
@@ -168,7 +168,7 @@ function viewScores() {
     displayName.innerHTML = "";
     displayScore.innerHTML = "";
     var highScores = JSON.parse(localStorage.getItem("savedScore")) || [];
-    console.log(highScores)
+    // console.log(highScores)
     for (i = 0; i < highScores.length; i++) {
         var nameSpan = document.createElement("li");
         var scoreSpan = document.createElement("li");
@@ -177,8 +177,8 @@ function viewScores() {
         displayName.appendChild(nameSpan);
         displayScore.appendChild(scoreSpan)
     }
-    console.log(displayName)
-    console.log(displayScore)
+    // console.log(displayName)
+    // console.log(displayScore)
 }
 
 
