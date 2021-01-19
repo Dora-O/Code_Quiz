@@ -126,7 +126,7 @@ function currentQuestion() {
 
 function userScore() {
     //captures current user's initials
-    var initials = prompt("Enter initials")
+    var initials = prompt("Game Over! Enter initials")
     if (initials === "") {
         alert("Initials cannot be blank!");
         //will return the function so that the user can input initials; will not proceed past this step until initials have been entered
@@ -184,7 +184,7 @@ function gameTimer() {
 
     var timerInterval = setInterval(function () {
         timeLeft--;
-        if (timeLeft === 0 || questionCount === 10) {
+        if (timeLeft === 0 || questionCount === 10 || timeLeft <= 0) {
             clearInterval(timerInterval);
             timerCountEl.textContent = "Game Over!";
             //displays score on screen AFTER user inputs initials
