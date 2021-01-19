@@ -124,12 +124,6 @@ function currentQuestion() {
     }
 }
 
-// function init(){
-//     document.querySelector("#backButton").style.display = "none";
-// }
-
-// init();
-
 function userScore() {
     //captures current user's initials
     var initials = prompt("Enter initials")
